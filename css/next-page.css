@@ -1,0 +1,502 @@
+/* Modern polished styles for Grammar Foundation
+   Notes:
+   - Uses CSS variables for easy theme tweaks
+   - Entrance animation stagger controlled by --i set in JS
+   - Accessible focus styles and reduced-motion support included
+*/
+
+:root {
+  --bg: #f7f9fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #1f3a8a; /* deep indigo */
+  --accent-2: #2c7be5;
+  --glass: rgba(255, 255, 255, 0.6);
+  --radius-lg: 18px;
+  --shadow-soft: 0 8px 28px rgba(15, 23, 42, 0.08);
+  --shadow-subtle: 0 4px 12px rgba(15, 23, 42, 0.06);
+  --max-width: 1100px;
+  --gap: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial;
+  background: linear-gradient(180deg, var(--bg), #ffffff 60%);
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+}
+
+/* Header */
+.page-header {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #fff;
+  padding: 12px 18px;
+  box-shadow: 0 3px 10px rgba(2, 6, 23, 0.12);
+  z-index: 120;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 18px;
+}
+.brand svg {
+  color: #fff;
+  opacity: 0.95;
+}
+.brand-title {
+  letter-spacing: 0.2px;
+}
+.nav {
+  display: flex;
+  gap: 12px;
+}
+.nav-link {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 8px;
+}
+.nav-link:hover {
+  opacity: 0.92;
+  text-decoration: underline;
+}
+
+/* Page container */
+.page {
+  max-width: var(--max-width);
+  margin: 28px auto;
+  padding: 0 18px;
+}
+
+/* Intro / hero */
+.intro-section {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  background: linear-gradient(
+    135deg,
+    rgba(44, 123, 229, 0.12),
+    rgba(31, 58, 138, 0.06)
+  );
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+.intro-left {
+  flex: 1;
+  min-width: 260px;
+}
+#intro-title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  color: var(--accent-2);
+}
+.lead {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+.intro-ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.btn.primary {
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(44, 123, 229, 0.14);
+}
+.btn.ghost {
+  background: transparent;
+  border-color: rgba(15, 23, 42, 0.06);
+  color: var(--accent-2);
+}
+
+/* intro illustration */
+.intro-right {
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.intro-illustration {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 10px 20px rgba(44, 123, 229, 0.06));
+}
+
+/* Cards grid */
+.cards-wrap {
+  margin-top: 22px;
+}
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--gap);
+}
+
+/* responsive grid */
+@media (min-width: 600px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1000px) {
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Card */
+.card {
+  background: linear-gradient(180deg, var(--card), rgba(255, 255, 255, 0.98));
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-subtle);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px;
+  transform-origin: center;
+  will-change: transform, opacity;
+  opacity: 0;
+  /* initial offscreen transform; directional classes modify further */
+  transform: translateY(10px) scale(0.995);
+  transition: transform 650ms cubic-bezier(0.2, 0.9, 0.3, 1), opacity 420ms ease,
+    box-shadow 220ms ease;
+  border: 1px solid rgba(15, 23, 42, 0.03);
+}
+
+/* Direction helpers applied by JS for left/right entrances */
+.card.from-left {
+  transform: translateX(-38px) translateY(10px) scale(0.995);
+}
+.card.from-right {
+  transform: translateX(38px) translateY(10px) scale(0.995);
+}
+
+/* When revealed */
+.card.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  box-shadow: var(--shadow-soft);
+  transition-delay: calc(var(--i) * 120ms);
+}
+
+/* Card hover/active */
+.card:focus-within,
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.08);
+}
+
+/* Card media */
+.card-media {
+  display: block;
+  width: 100%;
+  height: 140px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(44, 123, 229, 0.06),
+    rgba(31, 58, 138, 0.02)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Card body */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 6px 2px;
+}
+.card-body h2 {
+  margin: 0;
+  font-size: 18px;
+  color: #0f172a;
+}
+.card-body p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.card-cta {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  background: transparent;
+  color: var(--accent-2);
+  border: 1px solid rgba(44, 123, 229, 0.12);
+  align-self: flex-start;
+  transition: transform 160ms ease, background 160ms ease;
+}
+.card-cta:hover,
+.card-cta:focus {
+  transform: translateY(-3px);
+  background: linear-gradient(
+    90deg,
+    rgba(44, 123, 229, 0.08),
+    rgba(31, 58, 138, 0.06)
+  );
+}
+
+/* subtle breathing animation for intro or micro motion */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.intro-illustration {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* accessibility */
+:focus {
+  outline: none;
+}
+a:focus-visible,
+.btn:focus-visible,
+.card-cta:focus-visible {
+  outline: 3px solid rgba(44, 123, 229, 0.18);
+  border-radius: 8px;
+  outline-offset: 3px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .intro-illustration,
+  .card,
+  .card.is-visible,
+  .card:focus-within,
+  .card:hover {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.brand-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+
+
+
+
+/* Sidebar styling – enhanced */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px; /* hidden by default, slightly wider */
+  width: 280px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(31, 58, 138, 0.95), rgba(44, 123, 229, 0.95));
+  backdrop-filter: blur(8px); /* subtle glass effect */
+  color: #ffffff;
+  padding: 1.5rem 1rem;
+  transition: left 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1000;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar h2 {
+  margin-bottom: 1.5rem;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #fefefe;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 0.5rem;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.75rem 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 10px;
+  margin-bottom: 0.7rem;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 0.25s ease;
+}
+
+.sidebar a:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateX(4px);
+}
+
+.sidebar a:active {
+  background: rgba(255,255,255,0.25);
+}
+
+.sidebar a svg {
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+  transition: fill 0.3s ease;
+}
+
+.sidebar a:hover svg {
+  fill: #ffd700; /* optional highlight icon on hover */
+}
+
+/* Optional subtle animation for menu items on open */
+.sidebar.active a {
+  animation: slideIn 0.4s forwards;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Overlay styling – slightly darker for modern feel */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45); /* darker overlay for focus */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease;
+  z-index: 900;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Hamburger button – optional subtle animation */
+.hamburger {
+  font-size: 1.9rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.25s ease;
+}
+
+.hamburger:hover {
+  transform: rotate(90deg);
+}
+
+
+
+
+
+
+/* Blur main content when sidebar is open */
+#main-content.blur {
+  filter: blur(6px);
+  transition: filter 0.35s ease;
+  pointer-events: none; /* optional: prevent clicks while blurred */
+}
+
+
+
+
+/* Loading screen */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff; /* or match your background */
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Grammar Foundation — Cards</title>
+
+    <!-- Link to your CSS file: paste the CSS from the next block into styles.css or keep inline -->
+    <link rel="stylesheet" href="../css/next-page.css" />
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <div class="header-inner">
+        <div class="brand">
+          <img
+            src="../images/logo1.png"
+            alt="Grammar Foundation logo"
+            class="brand-logo"
+          />
+          <span class="brand-title">Grammar Foundation</span>
+        </div>
+
+        <!-- Hamburger button -->
+        <button class="hamburger" id="hamburger">&#9776;</button>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <h2>Menu</h2>
+      <a href="#">Quiz</a>
+      <a href="#">Exercise</a>
+    </aside>
+
+    <!-- Overlay for closing -->
+    <div class="overlay" id="overlay"></div>
+
+    <main class="page" id="main-content">
+      <!-- Intro / Hero -->
+      <section class="intro-section" aria-labelledby="intro-title">
+        <div class="intro-left">
+          <h1 id="intro-title">Master English Grammar Step by Step</h1>
+          <p class="lead">
+            Learn Grammar Structure, Tenses, and Sentence Patterns through
+            short, clear lessons designed for rapid progress, all in a
+            mobile-friendly layout.
+          </p>
+        </div>
+        <div class="intro-right" aria-hidden="true">
+          <!-- decorative illustration (replace src with your own image) -->
+          <img
+            src="../images/illustration-grammar.png"
+            alt=""
+            class="intro-illustration"
+          />
+        </div>
+      </section>
+
+      <!-- Cards grid -->
+      <section class="cards-wrap" aria-label="Topics">
+        <div class="cards-grid">
+          <article class="card" data-index="0">
+            <figure class="card-media">
+              <img
+                src="../images/logo.png"
+                alt="Grammar Structure"
+                loading="lazy"
+              />
+            </figure>
+            <div class="card-body">
+              <h2>Grammar Structure</h2>
+              <p>
+                Explore English grammar from words to sentences, covering
+                phrases, clauses, articles, voice, speech, and punctuation.
+              </p>
+              <a class="card-cta" href="/menu-main/grammar-structure.html">Learn more</a>
+            </div>
+          </article>
+
+          <article class="card" data-index="1">
+            <figure class="card-media">
+              <img
+                src="../images/tenses.png"
+                alt="English Tenses"
+                loading="lazy"
+              />
+            </figure>
+            <div class="card-body">
+              <h2>Tenses</h2>
+              <p>
+                Master English verb tenses to express actions and states in the
+                past, present, and future with clarity and confidence.
+              </p>
+              <a class="card-cta" href="/menu-main/tenses.html">Learn more</a>
+            </div>
+          </article>
+
+          <article class="card" data-index="2">
+            <figure class="card-media">
+              <img
+                src="../images/sentence.png"
+                alt="Sentence Patterns"
+                loading="lazy"
+              />
+            </figure>
+            <div class="card-body">
+              <h2>Sentence Patterns</h2>
+              <p>
+                Learn how to combine words, phrases, clauses, and tenses into
+                clear, effective sentences for writing and speaking.
+              </p>
+              <a class="card-cta" href="/menu-main/sentence-patterns.html">Learn more</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="../js/script.js"></script>
+  </body>
+</html>
